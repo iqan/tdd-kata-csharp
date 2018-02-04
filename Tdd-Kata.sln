@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-String Calculator", "1-String Calculator", "{1D36F556-9B45-4E69-9228-EFF2B773A6C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringCalculatorTests", "StringCalculatorTests\StringCalculatorTests.csproj", "{332B042B-0C1F-43E1-95C8-36F83BAEC51E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{332B042B-0C1F-43E1-95C8-36F83BAEC51E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{332B042B-0C1F-43E1-95C8-36F83BAEC51E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{332B042B-0C1F-43E1-95C8-36F83BAEC51E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{332B042B-0C1F-43E1-95C8-36F83BAEC51E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{332B042B-0C1F-43E1-95C8-36F83BAEC51E} = {1D36F556-9B45-4E69-9228-EFF2B773A6C6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB2610A1-3FEB-46F5-B915-1B0A41DAF1B2}
+	EndGlobalSection
+EndGlobal

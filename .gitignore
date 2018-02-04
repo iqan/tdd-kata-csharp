@@ -3,3 +3,6 @@
 ################################################################################
 
 /StringCalculatorTests/obj/Debug
+/StringCalculatorTests/bin/Debug
+/packages
+/.vs/Tdd-Kata
