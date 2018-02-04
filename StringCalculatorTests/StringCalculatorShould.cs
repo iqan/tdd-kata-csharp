@@ -44,6 +44,8 @@
         [TestCase("//;\n1;2", 3)]
         [TestCase("//?\n1?2", 3)]
         [TestCase("//?\n1?2?3", 6)]
+        [TestCase("//***\n1***2***3", 6)]
+        [TestCase("//*;?\n1*;?2*;?3", 6)]
         public void Return_Sum_Of_Number_When_Add_Is_Called_With_String_Containing_Numbers_Saperated_By_Delimeter(string input, int sum)
         {
             var sc = new StringCalculator();
@@ -90,7 +92,6 @@
     {
         private const int DEFAULT_VALUE = 0;
         private const string CUSTOM_DELIMITER_INDICATOR = "//";
-        private readonly static int CUSTOM_DELIMITER_POSITION = CUSTOM_DELIMITER_INDICATOR.Length;
         private static char[] defaultDelimiters = { ',', '\n' };
 
         internal int Add(string input)
@@ -132,10 +133,10 @@
 
             var numbers = ConvertStringNumbersToIntNumbers(numberStrings);
 
-            return SumAllValidIntegers(numbers);
+            return SumOfAllValidIntegers(numbers);
         }
 
-        private static int SumAllValidIntegers(IEnumerable<int> numbers)
+        private static int SumOfAllValidIntegers(IEnumerable<int> numbers)
         {
             return numbers.Where(n => n < 1000).Sum();
         }
@@ -144,16 +145,29 @@
         {
             if (input.StartsWith(CUSTOM_DELIMITER_INDICATOR))
             {
-                var delimiter = input[CUSTOM_DELIMITER_POSITION];
-                var inputNumbers = input.Substring(input.IndexOf('\n'));
-                return inputNumbers.Split(delimiter);
+                int firstLineEndingPosition = input.IndexOf('\n');
+
+                var delimiters = GetCustomDelimiters(input, firstLineEndingPosition);
+
+                var inputNumbers = input.Substring(firstLineEndingPosition);
+
+                return inputNumbers.Split(delimiters);
             }
             return input.Split(defaultDelimiters);
         }
 
+        private static char[] GetCustomDelimiters(string input, int firstLineEndingPosition)
+        {
+            var firstLine = input.Substring(CUSTOM_DELIMITER_INDICATOR.Length, firstLineEndingPosition - 2);
+            var delimiters = firstLine.ToCharArray();
+            return delimiters.Distinct().ToArray();
+        }
+
         private static IEnumerable<int> ConvertStringNumbersToIntNumbers(string[] numberStrings)
         {
-            var numbers = numberStrings.Select(ns => int.Parse(ns));
+            var numbers = numberStrings
+                .Where(ns => ns != "")
+                .Select(ns => int.Parse(ns));
             
             ThrowIfAnyNegativeNumbers(numbers);
 
